@@ -10,10 +10,9 @@ Feature: Signin functionality.
     And user entered emailId As "<emailID>" and password as "<password>".
     And user clicked on signin button.
     Then verify landed on home page.
+    And select dress type.
 
     Examples: 
       | emailID              | password     |
       | GiLcLIBK@Yopmail.com | hcAeMcDR@123 |
-      
-      
       

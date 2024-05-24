@@ -1,14 +1,14 @@
 package step.Defination;
 
+import org.junit.Assert;
 
 import io.cucumber.java.en.*;
 import pages.Page_01_HomePage;
 import pages.Page_04_Customer_Login;
+import pages.Page_05_LandingPage;
 import utilities.BaseClass;
 
 public class TC02_Sign_With_Multiple_Users extends BaseClass {
-
-
 
 	@When("user clicked on signin option.")
 	public void user_clicked_on_signin_option() {
@@ -37,7 +37,15 @@ public class TC02_Sign_With_Multiple_Users extends BaseClass {
 
 	@Then("verify landed on home page.")
 	public void verify_landed_on_home_page() {
-
+		landingObject = new Page_05_LandingPage(driver);
+		landingObject.verifyPageTitle();
 	}
 
+	@Then("select dress type.")
+	public void select_dress_type() {
+		landingObject = new Page_05_LandingPage(driver);
+		landingObject.selectDressType();
+		
+		
+	}
 }
