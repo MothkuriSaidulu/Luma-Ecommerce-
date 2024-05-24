@@ -20,58 +20,58 @@ public class Page_02_CreateNewCustomerAccount extends OnlineActions {
 	}
 
 	@FindBy(xpath = "//span[@data-ui-id='page-title-wrapper']")
-	private static WebElement pageTitle;
+	private WebElement pageTitle;
 
 	@FindBy(id = "firstname")
-	private static WebElement firstName_txt;
+	private WebElement firstName_txt;
 
 	@FindBy(id = "lastname")
-	private static WebElement lastName_txt;
+	private WebElement lastName_txt;
 
 	@FindBy(css = "input[name='email']")
-	private static WebElement email_txt;
+	private WebElement email_txt;
 
 	@FindBy(xpath = "//input[@name='password']")
-	private static WebElement password_txt;
+	private WebElement password_txt;
 
 	@FindBy(css = "input[title='Confirm Password']")
-	private static WebElement confirmPassword_txt;
+	private WebElement confirmPassword_txt;
 
 	@FindBy(xpath = "//button[@title='Create an Account']")
-	private static WebElement createAccount_btn;
+	private WebElement createAccount_btn;
 
 	@FindBy(xpath = "//div[@class='mage-error']")
-	private static WebElement error_msg;
+	private WebElement error_msg;
 
 	@FindBy(xpath = "//div[@class='message-success success message']")
-	private static WebElement successMessage_txt;
+	private WebElement successMessage_txt;
 
 //	Actions
-	public static void verifyPageTitle() {
+	public void verifyPageTitle() {
 		VerifyText(pageTitle, " Verify Page Title ", "Create New Customer Account");
 
 	}
 
-	public static void enterFirstName() {
+	public void enterFirstName() {
 
 		String firstName = "ram" + randomString();
 		EnterText(firstName_txt, " User entering first name ", firstName);
 		System.out.println(" User First Name : " + firstName);
 	}
 
-	public static void enterLastName() {
+	public void enterLastName() {
 		String lastName = "ram" + randomString();
 		EnterText(lastName_txt, "User Entered Last Name ", lastName);
 		System.out.println(" User Last Name : " + lastName);
 	}
 
-	public static void enterEmailID() {
+	public void enterEmailID() {
 		String randomEmailID = randomString() + "@Yopmail.com";
 		EnterText(email_txt, "User enetering emailid", randomEmailID);
 		System.out.println(" User Email Id : " + randomEmailID);
 	}
 
-	public static void enterPassword() {
+	public void enterPassword() {
 		String randomStringPassword = randomString() + "@123";
 
 		EnterText(password_txt, " user entering password ", randomStringPassword);
@@ -80,7 +80,7 @@ public class Page_02_CreateNewCustomerAccount extends OnlineActions {
 
 	}
 
-	public static void clickOnCreateAccountBtn() throws InterruptedException {
+	public void clickOnCreateAccountBtn() throws InterruptedException {
 
 		if (createAccount_btn.isDisplayed()) {
 			Click(createAccount_btn, "User clicked on create account button");

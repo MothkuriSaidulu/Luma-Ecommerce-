@@ -5,18 +5,22 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
+
+import org.junit.Assert;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.interactions.Actions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.Page_01_HomePage;
 import pages.Page_02_CreateNewCustomerAccount;
 import pages.Page_03_MyAccount;
 import pages.Page_04_Customer_Login;
+import pages.Page_05_LandingPage;
 
 public class BaseClass {
 
@@ -25,11 +29,17 @@ public class BaseClass {
 	public static FileInputStream file;
 	public static String getPropertyValue;
 	public static String rootPath = System.getProperty("user.dir");
-	public static Page_01_HomePage homePageObject;
-	public static Page_02_CreateNewCustomerAccount createAccountObject;
-	public static Page_03_MyAccount myAccountObject;
-	public static Page_04_Customer_Login customerLoginObject;
-
+	public Page_01_HomePage homePageObject;
+	public Page_02_CreateNewCustomerAccount createAccountObject;
+	public Page_03_MyAccount myAccountObject;
+	public Page_04_Customer_Login customerLoginObject;
+	public Page_05_LandingPage landingObject;  
+//	public static Assert assertObject;
+		
+	public static Actions action;
+	
+	
+	
 	public static Properties PropteryFile() throws IOException {
 		try {
 			property = new Properties();
@@ -85,5 +95,7 @@ public class BaseClass {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	
 	}
+	
 }

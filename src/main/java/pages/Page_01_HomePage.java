@@ -19,27 +19,28 @@ public class Page_01_HomePage extends OnlineActions {
 	}
 
 	@FindBy(xpath = "//a[@href='https://magento.softwaretestingboard.com/customer/account/create/']")
-	private static WebElement creatAnAct_txt;
+	private WebElement creatAnAct_txt;
 
 	@FindBy(xpath = "//li[@class='authorization-link']")
-	private static WebElement signin_txt;
+	private WebElement signin_txt;
 
-	public static void verifyHomeTitle() {
+	public void verifyHomeTitle() {
 
 		try {
-			Assert.assertEquals("Home Page", driver.getTitle());
+			String pageTitle = driver.getTitle();
+			Assert.assertEquals("Home Page", pageTitle);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println(" ******** User Landed on Home Page Successfully ********");
-
+		
 	}
 
-	public static void clickOnCreateAnAccount() {
+	public void clickOnCreateAnAccount() {
 		Click(creatAnAct_txt, "Click on Create an account");
 	}
 
-	public static void clickOnSignIn() {
+	public void clickOnSignIn() {
 		Click(signin_txt, "User clicking on sign in option");
 	}
 

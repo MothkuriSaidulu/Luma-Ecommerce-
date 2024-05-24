@@ -24,7 +24,7 @@ import utilities.BaseClass;
 
 public class OnlineActions extends BaseClass {
 
-	public static WebDriver driver;
+//	public static WebDriver driver;
 	public static final Logger logger = Logger.getLogger(OnlineActions.class);
 
 	public OnlineActions(WebDriver driver) {
@@ -111,9 +111,8 @@ public class OnlineActions extends BaseClass {
 
 //	Send keys
 	public static void EnterText(WebElement element, String elementDesc, String sendText) {
-		logger.info("--------	EnterText wrapper method inside FalconActions class is invoked successfully	--------");	
-		
-		
+		logger.info("--------	EnterText wrapper method inside FalconActions class is invoked successfully	--------");
+
 		try {
 			waitForElementToClickable(element, elementDesc);
 			element.click();
@@ -167,13 +166,12 @@ public class OnlineActions extends BaseClass {
 		act.moveToElement(element).click().build();
 		act.perform();
 	}
-	
+
 	@SuppressWarnings("static-access")
-	public static String randomString() 
-	{
+	public static String randomString() {
 		String ramdomString = new RandomStringUtils().randomAlphabetic(8);
 		return ramdomString;
-		
+
 	}
 
 }

@@ -19,10 +19,10 @@ public class Page_03_MyAccount extends OnlineActions {
 	}
 
 	@FindBy(xpath = "//div[@class='message-success success message']")
-	private static WebElement successMessage_txt;
+	private WebElement successMessage_txt;
 
 	@FindBy(xpath = "//span[@data-ui-id='page-title-wrapper']")
-	private static WebElement MyAccountPageTitle;
+	private WebElement MyAccountPageTitle;
 
 	public void verifySuccessMsg() throws InterruptedException {
 //		VerifyText(successMessage_txt, "verify Successfull msg ", "Thank you for registering with Main Website Store.");
@@ -35,6 +35,6 @@ public class Page_03_MyAccount extends OnlineActions {
 
 		VerifyText(MyAccountPageTitle, "Verify Page Title", "My Account");
 		System.out.println(" **********  User Landed on My Account page Successfully  **********  ");
-		
+
 	}
 }

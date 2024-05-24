@@ -8,13 +8,11 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = {
 //		"C:\\Users\\SAIDACHARY\\eclipse-workspace\\Test_11_Luma_Ecommerce_Project\\TestSuite\\TC01_Create_An_Account.feature"
-		"C:\\Users\\SAIDACHARY\\eclipse-workspace\\Test_11_Luma_Ecommerce_Project\\TestSuite\\TC02_SignInWithExisitingCustomer.feature"
-		},
-				glue = {"step.Defination"},
-				dryRun = false,
-				monochrome = true
+//		"C:\\Users\\SAIDACHARY\\eclipse-workspace\\Test_11_Luma_Ecommerce_Project\\TestSuite\\TC02_SignInWithExisitingCustomer.feature"
+		"C:\\Users\\SAIDACHARY\\eclipse-workspace\\Test_11_Luma_Ecommerce_Project\\TestSuite\\TC03_PlaceAnOrder.feature"
+}, glue = { "step.Defination" }, dryRun = false, monochrome = true
 //				tags = "@SignIn"
-		)
+)
 public class TestRunner {
 
 }
