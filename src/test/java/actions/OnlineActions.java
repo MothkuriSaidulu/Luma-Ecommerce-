@@ -25,6 +25,7 @@ import utilities.BaseClass;
 public class OnlineActions extends BaseClass {
 
 //	public static WebDriver driver;
+
 	public static final Logger logger = Logger.getLogger(OnlineActions.class);
 
 	public OnlineActions(WebDriver driver) {
@@ -35,10 +36,8 @@ public class OnlineActions extends BaseClass {
 
 //	Apply Wait mechanism
 	public static WebDriverWait ApplyWebDriverWait() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.ignoring(NoSuchElementException.class);
-		wait.ignoring(ElementClickInterceptedException.class);
-		wait.ignoring(StaleElementReferenceException.class);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.ignoring(Exception.class);
 		return wait;
 	}
 

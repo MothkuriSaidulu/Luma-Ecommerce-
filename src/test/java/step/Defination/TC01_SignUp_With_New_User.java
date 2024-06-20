@@ -2,6 +2,8 @@ package step.Defination;
 
 import java.io.IOException;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import pages.Page_01_HomePage;
 import pages.Page_02_CreateNewCustomerAccount;
@@ -10,6 +12,8 @@ import utilities.BaseClass;
 
 public class TC01_SignUp_With_New_User extends BaseClass {
 
+
+	
 	@Given("user launched the browser.")
 	public void user_launched_the_browser() throws IOException {
 		LaunchTheBrowser();
@@ -62,4 +66,7 @@ public class TC01_SignUp_With_New_User extends BaseClass {
 		myAccountObject = new Page_03_MyAccount(driver);
 		myAccountObject.verifySuccessMsg();	
 	}
+
+
 }
+

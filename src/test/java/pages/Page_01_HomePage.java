@@ -32,8 +32,7 @@ public class Page_01_HomePage extends OnlineActions {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(" ******** User Landed on Home Page Successfully ********");
-		
+		System.out.println(" ******** User Landed on Home Page Successfully ******** ");
 	}
 
 	public void clickOnCreateAnAccount() {
