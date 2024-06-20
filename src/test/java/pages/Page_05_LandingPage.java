@@ -68,11 +68,26 @@ public class Page_05_LandingPage extends OnlineActions {
 	@FindBy(xpath = "//div[@class='product-item-info']/descendant::strong")
 	private List<WebElement> listOfDresses;
 
-	@FindBy(xpath = "//div[@class='product details product-item-details']//div[@class='product details product-item-details']/parent::strong/following-sibling::div/descendant::div[@aria-label='XS']")
-	private WebElement size;
-	
 	@FindBy(xpath = "//div[@class='product details product-item-details']//a[contains(text(),'Juno Jacket')]")
 	private WebElement text;
+
+	@FindBy(xpath = "//div[@class='product-add-form']/descendant::div[@option-label='XS']")
+	private WebElement size;
+
+	@FindBy(xpath = "//div[@class='product-add-form']/descendant::div[@option-label='Green']")
+	private WebElement colour;
+
+	@FindBy(xpath = "//div[@class='product-add-form']/descendant::button")
+	private WebElement addToCart;
+
+	@FindBy(xpath = "//div[@class='page messages']/descendant::div[@data-ui-id='message-success']")
+	private WebElement success_msg;
+
+	@FindBy(xpath = "//div[@data-block='minicart']")
+	private WebElement Cart;
+
+	@FindBy(xpath = "//div[@id='minicart-content-wrapper']/descendant::button[@id='top-cart-btn-checkout']")
+	private WebElement ProceedToCheckOut;
 
 	public void verifyPageTitle() {
 
@@ -86,9 +101,9 @@ public class Page_05_LandingPage extends OnlineActions {
 	}
 
 	public void selectDressType() {
+		action = new Actions(driver);
 
 		try {
-			action = new Actions(driver);
 
 //			WaitForWebElementToVisable(women, "");
 
@@ -97,7 +112,7 @@ public class Page_05_LandingPage extends OnlineActions {
 
 //			WaitForWebElementToVisable(women_tops_text, "women_tops_text");
 			action.moveToElement(women_tops_text).build().perform();
-			
+
 //			WaitForWebElementToVisable(tops_models, "tops_models");
 			action.moveToElement(tops_models).click().build().perform();
 
@@ -113,6 +128,7 @@ public class Page_05_LandingPage extends OnlineActions {
 					break;
 				}
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -121,4 +137,18 @@ public class Page_05_LandingPage extends OnlineActions {
 
 	}
 
+	public void selectDressSizeAndColour() {
+
+		Click(size, "CLick on colour");
+		Click(colour, "colour");
+		Click(addToCart, "Click on Add to Cart");
+		System.out.println(success_msg.getText());
+		VerifyText(success_msg, "success_msg", "You added Juno Jacket to your shopping cart.");
+		System.out.println("Sucess message verified ");
+		Click(Cart, "click on cart ");
+		System.out.println("Clicked on Cart");
+		Click(ProceedToCheckOut, "Click on proceed to check out");
+		System.out.println(" Clicked on Proceed to  check out ");
+
+	}
 }

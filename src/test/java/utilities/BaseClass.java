@@ -3,10 +3,15 @@ package utilities;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Properties;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,6 +19,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.Page_01_HomePage;
@@ -33,14 +39,13 @@ public class BaseClass {
 	public Page_02_CreateNewCustomerAccount createAccountObject;
 	public Page_03_MyAccount myAccountObject;
 	public Page_04_Customer_Login customerLoginObject;
-	public Page_05_LandingPage landingObject;  
+	public Page_05_LandingPage landingObject;
 //	public static Assert assertObject;
-		
+
 	public static Actions action;
-	
-	
-	
-	public static Properties PropteryFile() throws IOException {
+
+	public Properties PropteryFile() throws IOException {
+
 		try {
 			property = new Properties();
 			file = new FileInputStream("Config.properties");
@@ -55,7 +60,7 @@ public class BaseClass {
 
 	}
 
-	public static void LaunchTheBrowser() throws IOException {
+	public void LaunchTheBrowser() throws IOException {
 
 		try {
 			property = PropteryFile();
@@ -82,20 +87,13 @@ public class BaseClass {
 		System.out.println(" *********  Browser Launched Successfully *********  ");
 	}
 
-	public static void getUrl() throws IOException {
+	public void getUrl() throws IOException {
 		property = PropteryFile();
 		getPropertyValue = property.getProperty("Url");
 		driver.get(getPropertyValue);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 
-	public static void CloseBrowser() {
-		try {
-			driver.quit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	
-	}
-	
+
+
 }

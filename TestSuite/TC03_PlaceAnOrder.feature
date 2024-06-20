@@ -11,6 +11,7 @@ Feature: Signin functionality.
     And user clicked on signin button.
     Then verify landed on home page.
     And select dress type.
+    And select size and colour click on add to cart.
 
     Examples: 
       | emailID              | password     |
