@@ -15,7 +15,7 @@ public class hooks extends BaseClass {
 
 	}
 
-	@After
+	
 	public void afterCucumber() {
 		System.out.println("Print This After Execution completed");
 		driver.close();
