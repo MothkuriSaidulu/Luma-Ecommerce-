@@ -29,7 +29,7 @@ public class OnlineActions extends BaseClass {
 	public static final Logger logger = Logger.getLogger(OnlineActions.class);
 
 	public OnlineActions(WebDriver driver) {
-		this.driver = driver;
+		BaseClass.driver = driver;
 		PageFactory.initElements(driver, this);
 
 	}
@@ -93,6 +93,7 @@ public class OnlineActions extends BaseClass {
 				"--------	VerifyText wrapper method inside FalconActions class is invoked successfully	--------");
 
 		try {
+			
 			WaitForWebElementToVisable(element, elementDesc);
 			String actualTxt = element.getText().trim().toLowerCase();
 			String expectedTxt = expectedText.trim().toLowerCase();
@@ -139,7 +140,7 @@ public class OnlineActions extends BaseClass {
 			logger.info("--------	click wrapper method inside MyAction class is invoked successfully	--------");
 
 		} catch (Exception e) {
-			logger.error("ERROR WHILE TRYING TO CLICK ON THE SPECIFIED WEB ELEMENT : " + e.getMessage());
+			logger.error(" ERROR WHILE TRYING TO CLICK ON THE SPECIFIED WEB ELEMENT : " + e.getMessage());
 			Assert.fail("WebDriverException : WHILE TRYING TO CLICK ON THE SPECIFIED WEB ELEMENT"
 					+ "User_unable_to_click_on_the_" + "<b>" + e + "</b>" + "_due_to_the_Exception:-" + e.getMessage());
 		}

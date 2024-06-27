@@ -1,7 +1,10 @@
 package pages;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
+import org.apache.commons.compress.archivers.sevenz.CLI;
 import org.bouncycastle.jcajce.provider.asymmetric.util.PrimeCertaintyCalculator;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -65,16 +68,18 @@ public class Page_05_LandingPage extends OnlineActions {
 	@FindBy(xpath = "//h1[@class='page-title']")
 	private WebElement pageTitle;
 
-	@FindBy(xpath = "//div[@class='product-item-info']/descendant::strong")
+	@FindBy(xpath = "//strong[@class='product name product-item-name']")
 	private List<WebElement> listOfDresses;
 
-	@FindBy(xpath = "//div[@class='product details product-item-details']//a[contains(text(),'Juno Jacket')]")
-	private WebElement text;
+//	@FindBy(xpath = "//div[@class='product details product-item-details']//a[contains(text(),'Juno Jacket')]")
+//	private WebElement text;
 
-	@FindBy(xpath = "//div[@class='product-add-form']/descendant::div[@option-label='XS']")
+	@FindBy(xpath = "//strong[@class='product name product-item-name']/following-sibling::div/descendant::div[@option-label='XS']") // "//div[@class='product
+																																	// details
+																																	// product-item-details']/descendant::div[@option-label='XS']")
 	private WebElement size;
 
-	@FindBy(xpath = "//div[@class='product-add-form']/descendant::div[@option-label='Green']")
+	@FindBy(xpath = "//div[@class='product-add-form']/descendant::div[@option-label='Blue']")
 	private WebElement colour;
 
 	@FindBy(xpath = "//div[@class='product-add-form']/descendant::button")
@@ -85,6 +90,12 @@ public class Page_05_LandingPage extends OnlineActions {
 
 	@FindBy(xpath = "//div[@data-block='minicart']")
 	private WebElement Cart;
+
+	@FindBy(xpath = "//div[@class='minicart-items-wrapper']//span[@class='price']")
+	private WebElement priceOfItems;
+
+	@FindBy(xpath = "//div[@class='block-content']/descendant::input[contains(@id,'cart-item')]")
+	private WebElement noOfItems;
 
 	@FindBy(xpath = "//div[@id='minicart-content-wrapper']/descendant::button[@id='top-cart-btn-checkout']")
 	private WebElement ProceedToCheckOut;
@@ -97,58 +108,89 @@ public class Page_05_LandingPage extends OnlineActions {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	public void selectDressType() {
+	public void selectDressType() throws InterruptedException {
 		action = new Actions(driver);
 
 		try {
-
-//			WaitForWebElementToVisable(women, "");
-
 			Thread.sleep(4000);
 			action.moveToElement(Women_title).build().perform();
-
-//			WaitForWebElementToVisable(women_tops_text, "women_tops_text");
 			action.moveToElement(women_tops_text).build().perform();
-
-//			WaitForWebElementToVisable(tops_models, "tops_models");
 			action.moveToElement(tops_models).click().build().perform();
-
-//			String title = pageTitle.getText();
-//			Assert.assertEquals("Jackets", title);
 
 			VerifyText(pageTitle, "Page title", "Jackets");
 
 			for (int i = 0; i < listOfDresses.size(); i++) {
-				String dressModelName = listOfDresses.get(i).getText();
-				if (dressModelName.equalsIgnoreCase("Juno Jacket")) {
-					text.click();
+				String itemName = listOfDresses.get(i).getText();
+				if (itemName.contains("Neve Studio Dance Jacket")) {
+					listOfDresses.get(i).click();
 					break;
 				}
 			}
 
-		} catch (Exception e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 
-//		action.moveToElement(woment_bottoms_text).build().perform();
+	}
+
+//	Select multiple dress items
+	public void selectMultipleDressItems() throws InterruptedException {
+
+		try {
+			action = new Actions(driver);
+
+			action.moveToElement(Women_title).build().perform();
+			action.moveToElement(women_tops_text).build().perform();
+			action.moveToElement(tops_models).click().build().perform();
+
+			VerifyText(pageTitle, "Page title", "Jackets");
+
+			ArrayList<String> listOfItems = new ArrayList<String>();
+			listOfItems.add("Neve Studio Dance Jacket");
+			listOfItems.add("Nadia Elements Shell");
+
+			for (int i = 0; i < listOfDresses.size(); i++) {
+				String WebItemName = listOfDresses.get(i).getText();
+//				System.out.println(WebItemName);
+				for (int j = 0; j < listOfItems.size(); j++) {
+					String listItemName = listOfItems.get(j);
+//					System.out.println(listItemName);
+					if (WebItemName.contains(listItemName)) {
+//						size.click();
+
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void selectDressSizeAndColour() throws InterruptedException {
+
+		Thread.sleep(4000);
+		Click(size, "CLick on size");
+		Click(colour, "colour");
+		Click(addToCart, "Click on Add to Cart");
+	}
+
+	public void verifySucessMsgAndClickOnCart() throws InterruptedException {
+
+		System.out.println(success_msg.getText());
+		VerifyText(success_msg, "success_msg", "You added Neve Studio Dance Jacket to your shopping cart.");
+//		System.out.println("Success message verified ");
+		Thread.sleep(3000);
+		Click(Cart, "click on cart ");
+//		System.out.println("Clicked on Cart");
+		Click(ProceedToCheckOut, "Click on proceed to check out");
+
+//		System.out.println(" Clicked on Proceed to  check out ");
 
 	}
 
-	public void selectDressSizeAndColour() {
-
-		Click(size, "CLick on colour");
-		Click(colour, "colour");
-		Click(addToCart, "Click on Add to Cart");
-		System.out.println(success_msg.getText());
-		VerifyText(success_msg, "success_msg", "You added Juno Jacket to your shopping cart.");
-		System.out.println("Sucess message verified ");
-		Click(Cart, "click on cart ");
-		System.out.println("Clicked on Cart");
-		Click(ProceedToCheckOut, "Click on proceed to check out");
-		System.out.println(" Clicked on Proceed to  check out ");
+	public void itemCalculations() {
 
 	}
 }
